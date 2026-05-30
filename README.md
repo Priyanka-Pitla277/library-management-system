@@ -3,7 +3,6 @@
 A modular, console-driven Library Management System implemented in **Java 8** and managed using **Maven**.The platform coordinates book inventories, patron records, priority-based reservation queues, localized branching logistics, and dynamic multi-channel user alerting configurations.
 
 ---
-
 ## 🏗️ System Architecture & Design Patterns
 
 The codebase is structured around core clean-coding guidelines, explicit boundary separation, and proven design paradigms:
