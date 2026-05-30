@@ -26,9 +26,12 @@ The execution enters a continuous `while (keepRunning)` block. Every complete cy
 2.  **Buffer Mismatch Safeguard:** The application prints `Selection:` and processes the response using `Integer.parseInt(scanner.nextLine().trim())`. Reading the entire line protects the scanner from trailing carriage return line breaks.
 
 3.  **Switch Context Delegation:** The parsed option routes into a `switch(choice)` block. Depending on the numeric evaluation, specific workflows execute:
+   
+#### Path A: get all Book (Choice 0)
 
+-   The console captures all books data.
 
-#### Path A: Adding a Book (Choice 1)
+#### Path B: Adding a Book (Choice 1)
 
 -   Control branches out to the helper function `constructBook(scanner)`.
 
@@ -41,7 +44,7 @@ The execution enters a continuous `while (keepRunning)` block. Every complete cy
 -   The repository scans the static lookup map `bookData`. If unique, the instance is written to memory.
 
 
-#### Path B: Registering a Patron (Choice 5)
+#### Path C: Registering a Patron (Choice 5)
 
 -   Control routes to `handleAddPatron(scanner, patronManagementService)`.
 
@@ -52,7 +55,7 @@ The execution enters a continuous `while (keepRunning)` block. Every complete cy
 -   The runtime delegates to `repository.addPatron(patron)`, placing the object inside the static database map `PatronRepository.patronData`.
 
 
-#### Path C: Checking Out a Book (Choice 8)
+#### Path D: Checking Out a Book (Choice 8)
 
 -   Control maps directly to `handleCheckoutBook(scanner, libraryService)`.
 
@@ -69,7 +72,7 @@ The execution enters a continuous `while (keepRunning)` block. Every complete cy
     -   If clear, it creates a `BorrowingRecord`, copies over data timestamps, sets `book.setAvailable(false)`, appends the ledger to the user's active history array, and logs `"book checked out"` to the console.
 
 
-#### Path D: Returning a Book (Choice 9)
+#### Path E: Returning a Book (Choice 9)
 
 -   Control hits `handleReturnBook(scanner, libraryService)`.
 
@@ -85,18 +88,7 @@ The execution enters a continuous `while (keepRunning)` block. Every complete cy
 
     -   **If no patrons are waiting:** The item parameters cleanly shift back to `isAvailable = true`.
 
-
-### Step 3: Global Fault Management & Exceptions
-
-Any unexpected processing anomalies inside the menu cycle are caught by an overarching multi-catch error handling container wrapping the loop:
-
--   **Format Failures:** Processing non-numeric input string arrays trips a `NumberFormatException` or `InputMismatchException`, outputting a text warning.
-
--   **Date Parsing Errors:** Invalid formatting logs a `DateTimeParseException`, prompting the user to correct the input structure to the `dd/MM/yyyy` format.
-
--   **Business Boundary Failures:** Invalid parameters catch custom items such as `ResourceNotFoundException` or `InvalidFieldException` and route them through `InputValidator` to safely print error messages without crashing the program.
-
-### Step 4: When choice code **`11`** is registeredLogistics Node Simulation Workflow
+### Step 3: When choice code **`11`** is registeredLogistics Node Simulation Workflow(with example)
 
 The final phase of execution operates as an automated state simulation completely decoupled from user inputs:
 
@@ -117,6 +109,19 @@ The final phase of execution operates as an automated state simulation completel
     -   The method executes `source.removeCopy(copyId)`, completely erasing the book from the origin branch's data maps.
 
     -   The asset tracking location parameter updates to `"B-NORTHSIDE"`, its status restores back to `"AVAILABLE"`, and it loads safely into the destination node's inventory group.
+  
+
+
+### Step 4: Global Fault Management & Exceptions
+
+Any unexpected processing anomalies inside the menu cycle are caught by an overarching multi-catch error handling container wrapping the loop:
+
+-   **Format Failures:** Processing non-numeric input string arrays trips a `NumberFormatException` or `InputMismatchException`, outputting a text warning.
+
+-   **Date Parsing Errors:** Invalid formatting logs a `DateTimeParseException`, prompting the user to correct the input structure to the `dd/MM/yyyy` format.
+
+-   **Business Boundary Failures:** Invalid parameters catch custom items such as `ResourceNotFoundException` or `InvalidFieldException` and route them through `InputValidator` to safely print error messages without crashing the program.
+-   
 
 ### Step 5: Graceful Exit & Teardown
 
@@ -125,6 +130,4 @@ When choice code **`12`** is registered, the application cleanly signs off from 
 1.  The execution flag `keepRunning` shifts to `false`, causing the loop structure to gracefully break on the next check cycle.
 
 2.  The operational command `scanner.close()` runs to release platform terminal listener bindings.
-
-3.  Execution drops out of the loop block and triggers the logistics routine `runLogisticsSimulation()`.
 .
