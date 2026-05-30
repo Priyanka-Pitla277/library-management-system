@@ -14,14 +14,7 @@ public class Book {
 	private Queue<Patron> reservationQueue;
 	private String genre;
 	private String reservedPatronId;
-//	public Book(String title, String author, int publicationYear, String isbn) {
-//		this.title = title;
-//		this.author = author;
-//		this.publicationYear = publicationYear;
-//		this.isbn = isbn;
-//		this.isAvailable = true;
-//	}
-
+	
 	public Book(Builder builder) {
 		this.title = builder.title;
 		this.author = builder.author;
@@ -35,7 +28,6 @@ public class Book {
 
 	public Book() {
 	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -115,11 +107,6 @@ public class Book {
 				+ ", isAvailable=" + isAvailable + ", isReserved=" + isReserved +  ", genre=" + genre + ", reservedPatronId=" + reservedPatronId + "]";
 	}
 
-
-
-
-
-
 	public static class Builder {
 
 		private String title;
@@ -127,8 +114,6 @@ public class Book {
 		private int publicationYear;
 		private String isbn;
 		private String genre;
-//		private boolean isAvailable;
-
 
 		public Builder title(String title) {
 			this.title = title;
@@ -144,15 +129,12 @@ public class Book {
 		public Builder publicationYear(int publicationYear) {
 			this.publicationYear = publicationYear;
 			return this;
-
 		}
 
 		public Builder isbn(String isbn) {
 			this.isbn = isbn;
 			return this;
-
 		}
-
 
 		public Builder genre(String genre) {
 			this.genre = genre;
@@ -162,7 +144,5 @@ public class Book {
 		public Book build() {
 			return new Book(this);
 		}
-
 	}
-
 }
