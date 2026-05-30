@@ -1,0 +1,34 @@
+package com.airtribe.lms.exception;
+
+/**
+ * Custom exception thrown when a resource or user is not found.
+ */
+public class ResourceNotFoundException extends RuntimeException {
+    
+    // 1. Unique serial version ID for serialization safety
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+
+	// 2. Default constructor
+    public ResourceNotFoundException() {
+        super();
+    }
+
+    // 3. Constructor that accepts a custom error message (Most Common)
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+
+    // 4. Constructor that accepts a custom message AND another root cause exception
+    public ResourceNotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
+
