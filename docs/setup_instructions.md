@@ -96,19 +96,7 @@ Any unexpected processing anomalies inside the menu cycle are caught by an overa
 
 -   **Business Boundary Failures:** Invalid parameters catch custom items such as `ResourceNotFoundException` or `InvalidFieldException` and route them through `InputValidator` to safely print error messages without crashing the program.
 
-
-### Step 4: Graceful Exit & Teardown
-
-When choice code **`11`** is registered, the application cleanly signs off from input monitoring loops:
-
-1.  The execution flag `keepRunning` shifts to `false`, causing the loop structure to gracefully break on the next check cycle.
-
-2.  The operational command `scanner.close()` runs to release platform terminal listener bindings.
-
-3.  Execution drops out of the loop block and triggers the logistics routine `runLogisticsSimulation()`.
-
-
-### Step 5: Logistics Node Simulation Workflow
+### Step 4: When choice code **`11`** is registeredLogistics Node Simulation Workflow
 
 The final phase of execution operates as an automated state simulation completely decoupled from user inputs:
 
@@ -130,4 +118,13 @@ The final phase of execution operates as an automated state simulation completel
 
     -   The asset tracking location parameter updates to `"B-NORTHSIDE"`, its status restores back to `"AVAILABLE"`, and it loads safely into the destination node's inventory group.
 
-5.  **Program Termination:** Once the logistics workflow completes, the `main` method hits its closing bracket, terminating the process with status code `0`.
+### Step 5: Graceful Exit & Teardown
+
+When choice code **`12`** is registered, the application cleanly signs off from input monitoring loops:
+
+1.  The execution flag `keepRunning` shifts to `false`, causing the loop structure to gracefully break on the next check cycle.
+
+2.  The operational command `scanner.close()` runs to release platform terminal listener bindings.
+
+3.  Execution drops out of the loop block and triggers the logistics routine `runLogisticsSimulation()`.
+.
